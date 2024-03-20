@@ -1,0 +1,54 @@
+/* Style for the main container */
+.electricity-billing-system {
+    font-family: Arial, sans-serif;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for headings */
+  .electricity-billing-system h1 {
+    color: #333;
+  }
+  
+  .electricity-billing-system h2 {
+    color: #007bff;
+  }
+  
+  /* Style for labels */
+  .electricity-billing-system label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  /* Style for input fields */
+  .electricity-billing-system input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Style for the calculate button */
+  .electricity-billing-system button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .electricity-billing-system button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the bill amount section */
+  .electricity-billing-system .bill-amount {
+    margin-top: 20px;
+  }
+  
