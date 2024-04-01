@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.css'
-const ElectricityBillingSystem = () => {
+const ElectricityBillingSystem = (props) => {
   // State for customer information
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
@@ -64,6 +64,7 @@ const ElectricityBillingSystem = () => {
           onChange={handleCustomerInfoChange}
         />
       </div>
+      {/* <h2>{props.name ? `Welcome - ${props.name}` : "Welcome"}</h2> */}
       <div>
         <label>Previous Reading:</label>
         <input
