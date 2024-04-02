@@ -1,7 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { auth } from "../../firebase";
 import InputControl from "../InputControl/InputControl";
 
@@ -55,8 +54,7 @@ function Login() {
         />
 
         <div className={styles.footer}>
-          <p className={styles.error}>The email address you entered isn't connected to an account.
-          Create your account and log in.</p>
+          <p className={styles.error}>{errorMsg}</p>
           <button disabled={submitButtonDisabled} onClick={handleSubmission}>
             Login
           </button>

@@ -1,10 +1,74 @@
+/* Global styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Heading styles */
+.Title {
+  background-color: #6F53A4;
+  color: white;
+  font-size: 2.5rem;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Container styles */
 .container {
-    height: 100%;
-    min-height: 100vh;
-    width: 100%;
-    background-image: url(bg1.jpg);
-    background-size:cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Subheading styles */
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+/* Paragraph styles */
+p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  margin-left: 20px;
+  margin-right: 20px;
+  /* margin: 3px; */
+}
+
+/* Strong tag styles */
+strong {
+  font-weight: bold;
+}
+
+/* Links styles */
+a {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  background-color: #6F53A4;
+  color: #fff !important;
+}
+
+/* Login and Signup links styles */
+.left {
+  /* float: left; */
+  margin-right: 20px;
+}
+
+.right {
+  /* float: right; */
+  margin-left: 20px;
+}
+
+.next {
+  display: flex;
+  justify-content: space-around;
+}

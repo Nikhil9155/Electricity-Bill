@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import './style.css'
+import './style.css';
+import * as XLSX from 'xlsx';
+
 const ElectricityBillingSystem = (props) => {
-  // State for customer information
+  const [customerInfoList, setCustomerInfoList] = useState([]);
   const [customerInfo, setCustomerInfo] = useState({
     name: '',
     address: '',
   });
 
-  // State for meter readings
   const [meterReadings, setMeterReadings] = useState({
     prevReading: 0,
     currentReading: 0,
   });
 
-  // State for bill amount
   const [billAmount, setBillAmount] = useState(0);
 
-  // Function to handle customer info input change
   const handleCustomerInfoChange = (e) => {
     const { name, value } = e.target;
     setCustomerInfo((prevInfo) => ({
@@ -25,7 +24,6 @@ const ElectricityBillingSystem = (props) => {
     }));
   };
 
-  // Function to handle meter readings input change
   const handleMeterReadingsChange = (e) => {
     const { name, value } = e.target;
     setMeterReadings((prevReadings) => ({
@@ -34,7 +32,6 @@ const ElectricityBillingSystem = (props) => {
     }));
   };
 
-  // Function to calculate bill amount
   const calculateBillAmount = () => {
     const { prevReading, currentReading } = meterReadings;
     const unitsConsumed = currentReading - prevReading;
@@ -43,9 +40,40 @@ const ElectricityBillingSystem = (props) => {
     setBillAmount(bill);
   };
 
+  const addCustomerInfo = () => {
+    const newCustomerInfo = {
+      name: customerInfo.name,
+      address: customerInfo.address,
+      prevReading: meterReadings.prevReading,
+      currentReading: meterReadings.currentReading,
+      billAmount: billAmount,
+    };
+    setCustomerInfoList([...customerInfoList, newCustomerInfo]);
+    setCustomerInfo({ name: '', address: '' });
+    setMeterReadings({ prevReading: 0, currentReading: 0 });
+    setBillAmount(0);
+  };
+
+  const downloadExcel = () => {
+    const data = [
+      ['Name', 'Address', 'Previous Reading', 'Current Reading', 'Bill Amount'],
+      ...customerInfoList.map((info) => [
+        info.name,
+        info.address,
+        info.prevReading,
+        info.currentReading,
+        info.billAmount,
+      ]),
+    ];
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Billing Data');
+    XLSX.writeFile(wb, 'billing_data.xlsx');
+  };
+
   return (
     <div className="electricity-billing-system">
-      <h1>Electricity Billing System</h1>
+      <h1>Enter Your Details</h1>
       <div>
         <label>Name:</label>
         <input
@@ -64,7 +92,6 @@ const ElectricityBillingSystem = (props) => {
           onChange={handleCustomerInfoChange}
         />
       </div>
-      {/* <h2>{props.name ? `Welcome - ${props.name}` : "Welcome"}</h2> */}
       <div>
         <label>Previous Reading:</label>
         <input
@@ -84,9 +111,11 @@ const ElectricityBillingSystem = (props) => {
         />
       </div>
       <button onClick={calculateBillAmount}>Calculate Bill</button>
+      <button onClick={addCustomerInfo}>Add Entry</button>
       <div>
         <h2>Bill Amount: ₹{billAmount}</h2>
       </div>
+      <button onClick={downloadExcel}>Download Excel</button>
     </div>
   );
 };
